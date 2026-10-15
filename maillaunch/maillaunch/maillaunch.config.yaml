@@ -1,0 +1,23 @@
+# MailLaunch example config. Copy to ./maillaunch.config.yaml or ~/.maillaunch/.
+#
+# Secrets are deliberately absent. Client IDs are public identifiers and live
+# here; the Gmail client secret is read from MAILLAUNCH_GMAIL_CLIENT_SECRET,
+# and OAuth tokens never touch this file -- see README "Token storage".
+
+provider: gmail                 # gmail | microsoft
+daily_limit: 100
+
+gmail:
+  client_id: "your-client-id.apps.googleusercontent.com"
+  # client_secret: set MAILLAUNCH_GMAIL_CLIENT_SECRET instead.
+
+microsoft:
+  client_id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  tenant: common                # 'common', or your tenant id for single-tenant apps
+
+send:
+  min_delay_seconds: 60
+  max_delay_seconds: 180
+  retry_failed: true
+  retry_attempts: 2             # retries after the first try
+  retry_backoff_seconds: 30     # 30s, then 60s, then 120s ...
